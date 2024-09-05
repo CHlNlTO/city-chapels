@@ -438,7 +438,8 @@ html{
 
 /***** Process *****/ 
 .process-image {
-    width: 250px;
+    max-width: 100%;
+    height: auto;
 }
 /***** End Process *****/
 
