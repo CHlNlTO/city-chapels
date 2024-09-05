@@ -436,6 +436,11 @@ html{
     }
  /***** End About Page *****/
 
+/***** Process *****/ 
+.process-image {
+    width: 250px;
+}
+/***** End Process *****/
 
 
 /* responsive */
@@ -498,7 +503,7 @@ html{
 
 @media only screen and (min-width: 1300px) {
     h3 {
-        font-size: 30px;
+        font-size: 24px;
     }
     
     .navbar .max-width {
@@ -558,6 +563,9 @@ html{
         max-width: 450px;
     }
 
+    .services-icon > img  {
+        width: 100px;
+    }
 }
 
 
