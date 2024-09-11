@@ -7,6 +7,7 @@
 }
 
 html{
+    font-size: 16px;
     scroll-behavior: smooth;
 }
 /* Typography */
@@ -60,7 +61,8 @@ html{
 
     h3 {
         font-weight: 500;
-        font-size: 20px;
+        font-size: 1.25rem; /* 20px */
+        line-height: 1.75rem; /* 28px */
     }
 
     main, section, footer {
@@ -73,8 +75,8 @@ html{
 
     .main-title {
         font-weight: 600;
-        font-size: 42px;
-        line-height: 48px;
+        font-size: 2.25rem; /* 36px */
+        line-height: 2.5rem; /* 40px */
     }
 
     .section-head > img {
@@ -84,7 +86,8 @@ html{
 
     .section-title, .section-title-invert {
         font-weight: 600;
-        font-size: 32px;
+        font-size: 1.875rem; /* 30px */
+        line-height: 2.25rem; /* 36px */
     }
 
     .section-title {
@@ -93,7 +96,7 @@ html{
 
     .section-description, .section-description-invert {
         margin: auto;
-        font-size: 14px;
+        font-size: 0.875rem;
         padding-top: 16px;
     }
 
@@ -151,7 +154,6 @@ html{
 
     .navbar .menu li a {
         display: block;
-        font-size: 16px;
         letter-spacing: 1px;
         margin-left: 25px;
         transition: color 0.3s ease;
@@ -162,7 +164,6 @@ html{
     }
 
     .menu-btn {
-        font-size: 30px;
         cursor: pointer;
         display: none;
     }
@@ -205,13 +206,14 @@ html{
 
     .services-icon > img{
         height: auto;
-        width: 120px;
+        width: 100px;
         padding-right: 24px;
     }
 
     .service-card > p {
         font-weight: 400;
-        font-size: 16px;
+        font-size: 0.875rem; /* 14px */
+        line-height: 1.25rem; /* 20px */
     }
 /***** End Service *****/
 
@@ -253,7 +255,8 @@ html{
     }
 
     .date {
-        font-size: 12px;
+        font-size: 0.75rem; /* 12px */
+        line-height: 1rem; /* 16px */
     }
 
     .profile-pic {
@@ -306,6 +309,11 @@ html{
 
     .pricing-card > h3 {
         font-weight: 700;
+    }
+
+    .pricing-card > ul,p {
+        font-size: 0.875rem; /* 14px */
+        line-height: 1.25rem; /* 20px */
     }
 
     .pricing-wrap {
@@ -393,7 +401,8 @@ html{
 
 
     .social-media > i, .footer-h2 {
-        font-size: 32px;
+        font-size: 1.875rem; /* 30px */
+        line-height: 2.25rem; /* 36px */
     }
 
     .footer-h2 {
@@ -450,7 +459,8 @@ html{
 }
 
 .service-step {
-    font-size: 12px;
+    font-size: 0.75rem; /* 12px */
+    line-height: 1rem; /* 16px */
     font-weight: 500;
     color: #7e6b0c;
 }
@@ -460,7 +470,9 @@ html{
 /* responsive */
 
 @media only screen and (min-width: 768px) {
- 
+    html {
+        font-size: 18px;
+    }
 }
 
 
@@ -517,7 +529,8 @@ html{
 
 @media only screen and (min-width: 1300px) {
     h3 {
-        font-size: 24px;
+        font-size: 1.5rem; /* 24px */
+        line-height: 2rem; /* 32px */
     }
     
     .navbar .max-width {
@@ -541,13 +554,19 @@ html{
         width: 300px;
     }
 
+    .section-head > p {
+        font-size: 0.875rem; /* 14px */
+        line-height: 1.25rem; /* 20px */
+    }
+
     .hero-p {
-        font-size: 20px;
+        font-size: 1.25rem; /* 20px */
+        line-height: 1.75rem; /* 28px */
     }
 
     .main-title {
-        font-size: 72px;
-        line-height: 96px;
+        font-size: 4.5rem; /* 72px */
+        line-height: 1;
     }
 
     .map-card, .graph-card {
@@ -561,7 +580,8 @@ html{
     }
 
     .btn-grad-turq {
-        font-size: 18px;
+        font-size: 1.125rem; /* 18px */
+        line-height: 1.75rem; /* 28px */
     }
 
     .map-card > img {
@@ -577,9 +597,6 @@ html{
         max-width: 450px;
     }
 
-    .services-icon > img  {
-        width: 100px;
-    }
 }
 
 
@@ -622,6 +639,7 @@ html{
     .navbar .menu li a {
         display: inline-block;
         margin: 20px 0;
-        font-size: 24px;
+        font-size: 1.5rem; /* 24px */
+        line-height: 2rem; /* 32px */
     }
 }
