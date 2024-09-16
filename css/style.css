@@ -471,6 +471,19 @@ html{
 /***** End Process *****/
 
 
+/***** gallery *****/ 
+.gal-img {
+    columns: 300px;
+}
+
+.gal-img > img {
+    width: 100%;
+    margin-bottom: 1rem;
+    border-radius: .5rem;
+}
+/***** End gallery *****/
+
+
 /* responsive */
 
 
