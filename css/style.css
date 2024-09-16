@@ -491,6 +491,10 @@ html{
         height: 75vh;
     }
     
+    /* .logo > .logo-icon > img {
+        display: none;
+    } */
+
     .pricing-wrap {
         flex-wrap: nowrap;
     }
