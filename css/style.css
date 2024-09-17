@@ -147,9 +147,10 @@ html{
         justify-content: space-between;
     }
 
-    .navbar .logo a {
+    .navbar .logo picture {
         display: flex;
         height: 25px;
+        max-width: 100px;
     }
 
     .navbar .menu li {
@@ -198,7 +199,11 @@ html{
     }
 
     .services-main {
-        background-image: linear-gradient(0.40turn, rgb(36, 38, 42, .5), rgba(170, 144, 16, .5)), url(/img/support.jpg);
+        background-image: linear-gradient(0.40turn, rgb(36, 38, 42, 1), rgba(170, 144, 16, .75)), url(/img/support.jpg);
+    }
+
+    .pricing-main {
+        background-image: linear-gradient(0.40turn, rgb(36, 38, 42, .75), rgba(170, 144, 16, .75)), url(/img/people-chat.jpg);
     }
 /***** End Main *****/
 
@@ -497,7 +502,7 @@ html{
 .pricing-deck {
     display: grid;
     grid-gap: 1rem;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(400px, 1fr);
 }
 
 .pricing-card-2 {
@@ -597,21 +602,24 @@ html{
     .pricing-deck {
         display: grid;
         grid-template-columns: 1fr 1fr;
-}
+    }
+
+    .section-head > img {
+        visibility: hidden;
+    }
     }
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
     .content-wrap {
         grid-template-columns: repeat(2, minmax(300px, 2fr));
     }
-
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
     .pricing-deck {
         grid-template-columns: 1fr 1fr 1fr;
     }
-
 }
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {}
 
 @media only screen and (min-width: 1300px) {
     h3 {
