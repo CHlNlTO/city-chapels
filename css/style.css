@@ -307,6 +307,11 @@ html{
         color: #c8233c;
     }
 
+    .pricing-deck {
+        display: grid;
+
+    }
+  
     .pricing-box {
         padding: 72px 36px;
     }
@@ -487,6 +492,56 @@ html{
 /* responsive */
 
 
+/***** Pricing *****/ 
+
+.pricing-deck {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: 1fr;
+}
+
+.pricing-card-2 {
+    max-width: 100%;
+    background-color: #24262A;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    color: #F0F0F3;
+    height: auto;
+}
+
+.pricing-card-2 > hr {
+    margin: 1rem 0;
+}
+
+.pricing-head > img {
+    width: 150px;
+}
+
+.pricing-head > h2 {
+    font-size: 2rem;
+}
+
+.pricing-head > p {
+    font-size: 1rem;
+}
+
+.pricing-benefits > ul > li {
+    list-style-position: inside;
+}
+
+.pricing-btn {
+    margin: 1rem 0;
+    width: 100%;
+    transition: 0.5s;
+    background-size: 200% auto;
+    border: none;
+    border-radius: 24px;
+    display: block; 
+    font-weight: 600;
+    padding: 10px 20px;
+    text-align: center;
+}
+/***** End Pricing *****/
 
 
 /* Extra small devices (phones, 600px and down) */
@@ -503,11 +558,6 @@ html{
     .main {
         height: 75vh;
     }
-    
-    /* .logo > .logo-icon > img {
-        display: none;
-    } */
-
     .pricing-wrap {
         flex-wrap: nowrap;
     }
@@ -543,12 +593,22 @@ html{
     .vision-box .m-vission {
         padding-left: 48px;
     }
+
+    .pricing-deck {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
 }
+    }
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
     .content-wrap {
         grid-template-columns: repeat(2, minmax(300px, 2fr));
     }
+
+    .pricing-deck {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
 }
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {}
