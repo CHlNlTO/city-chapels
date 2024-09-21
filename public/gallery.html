@@ -93,93 +93,24 @@
 <!-- ========== Start Review ========== -->
 <section class="review">
     <div class="sub-section">
-        <div class="section-head pb-2">
-            <h2 class="section-title-invert m-0">Reviews</h2>
+      <div class="section-head pb-2">
+        <h2 class="section-title-invert m-0">Reviews</h2>
+      </div>
+      <div class="reviewer-card">
+        <div class="container swiper">
+          <div class="card-wrapper">
+            <ul class="card-list swiper-wrapper" id="reviewContainer">
+              <!-- Review items will be dynamically inserted here -->
+            </ul>
+
+            <div class="swiper-pagination"></div>
+            <div class="swiper-slide-button swiper-button-prev"></div>
+            <div class="swiper-slide-button swiper-button-next"></div>
+          </div>
         </div>
-        <div class="reviewer-card">
-            <div class="container swiper">
-                <div class="card-wrapper">
-                    <ul class="card-list swiper-wrapper">
-                        <li class="card-item swiper-slide">
-                            <a href="#" class="card-link">
-                                <p class="badge"><i class="fa-solid fa-quote-left"></i></p>
-                                <h2 class="card-title">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam, eum ratione. Vel distinctio odio quasi totam nulla maxime temporibus aperiam veritatis voluptatem inventore, saepe nisi, ipsa voluptas, adipisci culpa sint!</h2>
-                                <div class="card-detail">
-                                    <img src="/img/profile/profile-pic1.png" alt="Card Image" class="card-image">
-                                    <div>
-                                        <h4 class="card-profile">Juana Dela Cruz</h4>
-                                        <p class="card-date">August 20, 2024</p>
-                                    </div>
-                                </div>
-
-                            </a>
-                        </li>
-                        <li class="card-item swiper-slide">
-                            <a href="#" class="card-link">
-                                <p class="badge"><i class="fa-solid fa-quote-left"></i></p>
-                                <h2 class="card-title">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam, eum ratione. Vel distinctio odio quasi totam nulla maxime temporibus aperiam veritatis voluptatem inventore, saepe nisi, ipsa voluptas, adipisci culpa sint!</h2>
-                                <div class="card-detail">
-                                    <img src="/img/profile/profile-pic1.png" alt="Card Image" class="card-image">
-                                    <div>
-                                        <h4 class="card-profile">Juana Dela Cruz</h4>
-                                        <p class="card-date">August 20, 2024</p>
-                                    </div>
-                                </div>
-
-                            </a>
-                        </li>
-                        <li class="card-item swiper-slide">
-                            <a href="#" class="card-link">
-                                <p class="badge"><i class="fa-solid fa-quote-left"></i></p>
-                                <h2 class="card-title">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam, eum ratione. Vel distinctio odio quasi totam nulla maxime temporibus aperiam veritatis voluptatem inventore, saepe nisi, ipsa voluptas, adipisci culpa sint!</h2>
-                                <div class="card-detail">
-                                    <img src="/img/profile/profile-pic1.png" alt="Card Image" class="card-image">
-                                    <div>
-                                        <h4 class="card-profile">Juana Dela Cruz</h4>
-                                        <p class="card-date">August 20, 2024</p>
-                                    </div>
-                                </div>
-
-                            </a>
-                        </li>
-                        <li class="card-item swiper-slide">
-                            <a href="#" class="card-link">
-                                <p class="badge"><i class="fa-solid fa-quote-left"></i></p>
-                                <h2 class="card-title">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam, eum ratione. Vel distinctio odio quasi totam nulla maxime temporibus aperiam veritatis voluptatem inventore, saepe nisi, ipsa voluptas, adipisci culpa sint!</h2>
-                                <div class="card-detail">
-                                    <img src="/img/profile/profile-pic1.png" alt="Card Image" class="card-image">
-                                    <div>
-                                        <h4 class="card-profile">Juana Dela Cruz</h4>
-                                        <p class="card-date">August 20, 2024</p>
-                                    </div>
-                                </div>
-
-                            </a>
-                        </li>
-                        <li class="card-item swiper-slide">
-                            <a href="#" class="card-link">
-                                <p class="badge"><i class="fa-solid fa-quote-left"></i></p>
-                                <h2 class="card-title">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam, eum ratione. Vel distinctio odio quasi totam nulla maxime temporibus aperiam veritatis voluptatem inventore, saepe nisi, ipsa voluptas, adipisci culpa sint!</h2>
-                                <div class="card-detail">
-                                    <img src="/img/profile/profile-pic1.png" alt="Card Image" class="card-image">
-                                    <div>
-                                        <h4 class="card-profile">Juana Dela Cruz</h4>
-                                        <p class="card-date">August 20, 2024</p>
-                                    </div>
-                                </div>
-
-                            </a>
-                        </li>
-                    </ul>
-
-                    <div class="swiper-pagination"></div>
-                    <div class="swiper-slide-button swiper-button-prev"></div>
-                    <div class="swiper-slide-button swiper-button-next"></div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-</section>
+  </section>
 <!-- ========== End Review ========== -->
 
 
@@ -212,6 +143,50 @@
 
         <!-- Linking custom Script -->
     <script src="/js/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          fetch("./data/mockReviews.json")
+            .then((response) => response.json())
+            .then((data) => {
+              const reviewContainer = document.getElementById("reviewContainer");
+              console.log(data);
+              data.forEach((review) => {
+                const reviewItem = document.createElement("li");
+                reviewItem.className = "card-item swiper-slide";
+                reviewItem.innerHTML = `
+                  <a href="#" class="card-link">
+                    <p class="badge"><i class="fa-solid fa-quote-left"></i></p>
+                    <h2 class="card-title">${review.quote}</h2>
+                    <div class="card-detail">
+                      <img src="${review.profileImage}" alt="Card Image" class="card-image" />
+                      <div>
+                        <h4 class="card-profile">${review.name}</h4>
+                        <p class="card-date">${review.date}</p>
+                      </div>
+                    </div>
+                  </a>
+                `;
+                reviewContainer.appendChild(reviewItem);
+              });
+
+              // Initialize Swiper after adding the reviews
+              new Swiper(".swiper", {
+                slidesPerView: 1,
+                spaceBetween: 30,
+                loop: true,
+                pagination: {
+                  el: ".swiper-pagination",
+                  clickable: true,
+                },
+                navigation: {
+                  nextEl: ".swiper-button-next",
+                  prevEl: ".swiper-button-prev",
+                },
+              });
+            })
+            .catch((error) => console.error("Error fetching reviews:", error));
+        });
+      </script>
 <!-- ========== End JS ========== -->
 
 </body>
