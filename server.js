@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-app.get("/api/facebook-reviews", async (req, res) => {
+app.get("/facebook-reviews", async (req, res) => {
   const accessToken = process.env.FACEBOOK_ACCESS_TOKEN;
   const pageId = process.env.FACEBOOK_PAGE_ID;
 
