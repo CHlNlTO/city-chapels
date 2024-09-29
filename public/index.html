@@ -381,7 +381,7 @@
     <script src="/js/script.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        fetch("/facebook-reviews")
+        fetch("/api/facebook-reviews")
           .then((response) => response.json())
           .then((data) => {
             const reviewContainer = document.getElementById("reviewContainer");

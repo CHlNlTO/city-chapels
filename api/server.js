@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-app.get("/facebook-reviews", async (req, res) => {
+app.get("/api/facebook-reviews", async (req, res) => {
   const accessToken = process.env.FACEBOOK_ACCESS_TOKEN;
   const pageId = process.env.FACEBOOK_PAGE_ID;
 
@@ -68,6 +68,6 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: "Something went wrong!" });
 });
 
-app.listen(port, "0.0.0.0", () => {
-  console.log(`Server running on http://0.0.0.0:${port}`);
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
 });
