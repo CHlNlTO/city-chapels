@@ -4,7 +4,11 @@ const path = require("path");
 require("dotenv").config();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = parseInt(process.env.PORT) || process.argv[3] || 5000;
+
+// Facebook API configuration
+const FACEBOOK_ACCESS_TOKEN = process.env.FACEBOOK_ACCESS_TOKEN;
+const PAGE_ID = process.env.PAGE_ID;
 
 app.use(express.static("public"));
 
@@ -13,83 +17,43 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/facebook-reviews", async (req, res) => {
-  // const accessToken = process.env.FACEBOOK_ACCESS_TOKEN;
-  // const pageId = process.env.FACEBOOK_PAGE_ID;
-
-  // if (!accessToken || !pageId) {
-  //   return res.status(500).json({ error: "Missing Facebook credentials" });
-  // }
-
-  // try {
-  //   const response = await axios.get(
-  //     `https://graph.facebook.com/v17.0/${pageId}/ratings`,
-  //     {
-  //       params: {
-  //         access_token: accessToken,
-  //         fields: "reviewer{name,picture},created_time,rating,review_text",
-  //         limit: 10, // Adjust as needed
-  //       },
-  //       timeout: 5000, // 5 seconds timeout
-  //     }
-  //   );
-
-  //   if (!response.data || !response.data.data) {
-  //     throw new Error("Invalid response from Facebook API");
-  //   }
-
-  //   const reviews = response.data.data.map((review) => ({
-  //     reviewer: review.reviewer ? review.reviewer.name : "Anonymous",
-  //     profilePic:
-  //       review.reviewer && review.reviewer.picture
-  //         ? review.reviewer.picture.data.url
-  //         : null,
-  //     date: new Date(review.created_time).toLocaleDateString(),
-  //     rating: review.rating,
-  //     text: review.review_text || "No review text provided.",
-  //   }));
-
-  //   res.json(reviews);
-  // } catch (error) {
-  //   console.error("Error fetching Facebook reviews:", error);
-  //   if (error.response) {
-  //     // The request was made and the server responded with a status code
-  //     // that falls out of the range of 2xx
-  //     res
-  //       .status(error.response.status)
-  //       .json({ error: error.response.data.error.message });
-  //   } else if (error.request) {
-  //     // The request was made but no response was received
-  //     res.status(500).json({ error: "No response received from Facebook API" });
-  //   } else {
-  //     // Something happened in setting up the request that triggered an Error
-  //     res.status(500).json({ error: "Error setting up the request" });
-  //   }
-  // }
-
   try {
-    // Read the mock data file
-    const data = await fs.readFile(
-      path.join(__dirname, "mockReviews.json"),
-      "utf8"
+    const response = await axios.get(
+      `https://graph.facebook.com/v21.0/${PAGE_ID}/ratings`,
+      {
+        params: {
+          access_token: FACEBOOK_ACCESS_TOKEN,
+          fields: "reviewer{name,picture},rating,review_text,created_time",
+          limit: 10, // Adjust as needed
+        },
+      }
     );
-    const mockReviews = JSON.parse(data);
 
-    // Process the mock data similar to how we'd process real API data
-    const reviews = mockReviews.data.map((review) => ({
-      reviewer: review.reviewer ? review.reviewer.name : "Anonymous",
-      profilePic:
-        review.reviewer && review.reviewer.picture
-          ? review.reviewer.picture.data.url
-          : null,
-      date: new Date(review.created_time).toLocaleDateString(),
+    console.log("Facebook reviews:", response.data.data);
+
+    // Transform Facebook data to match your existing review format
+    const formattedReviews = response.data.data.map((review) => ({
+      quote: review.review_text || `Rated ${review.rating} out of 5 stars`,
+      name: review.reviewer.name,
+      profileImage:
+        review.reviewer.picture?.data?.url || "/img/default-profile.png", // Add a default profile image
+      date: new Date(review.created_time).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }),
       rating: review.rating,
-      text: review.review_text || "No review text provided.",
     }));
 
-    res.json(reviews);
+    res.json(formattedReviews);
   } catch (error) {
-    console.error("Error reading mock reviews:", error);
-    res.status(500).json({ error: "Error fetching reviews" });
+    console.error(
+      "Error fetching Facebook reviews:",
+      error.response?.data || error
+    );
+    // Fall back to mock data if Facebook API fails
+    const mockData = require("../public/data/mockReviews.json");
+    res.json(mockData);
   }
 });
 
@@ -99,5 +63,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
+  console.log(`Listening on http://localhost:${port}`);
 });
