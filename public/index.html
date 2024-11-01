@@ -381,20 +381,28 @@
     <script src="/js/script.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        fetch("./data/mockReviews.json")
+        fetch("/api/facebook-reviews")
           .then((response) => response.json())
           .then((data) => {
             const reviewContainer = document.getElementById("reviewContainer");
-            console.log(data);
+
             data.forEach((review) => {
               const reviewItem = document.createElement("li");
               reviewItem.className = "card-item swiper-slide";
+
+              // Add rating stars if you want to display them
+              const ratingStars = review.rating
+                ? '<div class="rating">' + "⭐".repeat(review.rating) + "</div>"
+                : "";
+
               reviewItem.innerHTML = `
-                <a href="#" class="card-link">
+                <a href="https://www.facebook.com/citychapels/reviews" target=_blank class="card-link">
                   <p class="badge"><i class="fa-solid fa-quote-left"></i></p>
+                  ${ratingStars}
                   <h2 class="card-title">${review.quote}</h2>
                   <div class="card-detail">
-                    <img src="${review.profileImage}" alt="Card Image" class="card-image" />
+                    <img src="${review.profileImage}" alt="Profile" class="card-image"
+                         onerror="this.src='/img/default-profile.png'"/>
                     <div>
                       <h4 class="card-profile">${review.name}</h4>
                       <p class="card-date">${review.date}</p>
