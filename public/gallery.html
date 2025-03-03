@@ -40,10 +40,9 @@
             <li><a href="services.html" class="menu-btn">Services</a></li>
             <li><a href="pricing.html" class="menu-btn">Pricing</a></li>
             <li><a href="gallery.html" class="menu-btn">Gallery</a></li>
-            <li><a href="tel:09177212114" class="menu-btn">
-                <button class="btn-grad-turq">
-                Call Us
-            </button></a></li>
+            <li><a href="tel:09778113377" class="menu-btn">
+                <button class="btn-grad-turq">Call Us</button></a
+              ></li>
         </ul>
         <div class="menu-btn">
             <i class="fa-solid fa-bars"></i>
@@ -75,16 +74,16 @@
                 <img src="/img/gal/pic 3.png" alt="">
                 <img src="/img/gal/pic 4.png" alt="">
                 <img src="/img/gal/pic 5.png" alt="">
-                <img src="/img/gal/pic 6.png" alt="">
                 <img src="/img/gal/pic 7.png" alt="">
                 <img src="/img/gal/pic 8.png" alt="">
-                <img src="/img/gal/pic 9.png" alt="">
                 <img src="/img/gal/pic 10.png" alt="">
-                <img src="/img/gal/pic 11.png" alt="">
-                <img src="/img/gal/pic 12.png" alt="">
                 <img src="/img/gal/pic 13.png" alt="">
                 <img src="/img/gal/pic 14.png" alt="">
-            </div>
+                <img src="/img/gal/pic 15.png" alt="">
+                <img src="/img/gal/pic 16.png" alt="">
+                <img src="/img/gal/pic 17.png" alt="">
+                <img src="/img/gal/pic 18.png" alt="">
+                <img src="/img/gal/pic 19.png" alt="">
         </section>
     </section>
 <!-- ========== End Gallery ========== -->
@@ -111,96 +110,108 @@
       </div>
     </div>
   </section>
-<!-- ========== End Review ========== -->
+  <!-- ========== End Review ========== -->
 
 
 <!-- ========== Start Footer ========== -->
 <footer>
-  <div class="sub-section footer-section d-flex a-items">
-    <div class="section-head footer-head pb-2 d-flex a-items">
-      <h2 class="footer-h2">Get in Touch</h2>
-      <p class="footer-p">Have questions? Talk to a care team member.</p>
+    <div class="sub-section footer-section d-flex a-items">
+      <div class="section-head footer-head pb-2 d-flex a-items">
+        <h2 class="footer-h2">Get in Touch</h2>
+        <p class="footer-p">Have questions? Talk to a care team member.</p>
+      </div>
+      <div class="footer-social d-flex">
+        <a href="tel:09778113377" class="social-media">
+          <i class="fa-solid fa-square-phone"></i>
+        </a>
+        <a href="mailto:citychapels@gmail.com" class="social-media">
+          <i class="fa-solid fa-square-envelope"></i>
+        </a>
+        <a
+          href="https://www.facebook.com/citychapels"
+          class="social-media"
+          target="_blank"
+        >
+          <div class="social-media">
+            <i class="fa-brands fa-square-facebook"></i>
+          </div>
+        </a>
+      </div>
     </div>
-    <div class="footer-social d-flex">
-      <a href="tel:09177212114" class="social-media">
-        <i class="fa-solid fa-square-phone"></i>
-      </a>
-      <a href="mailto:citychapels@gmail.com" class="social-media">
-        <i class="fa-solid fa-square-envelope"></i>
-      </a>
-      <a
-        href="https://www.facebook.com/citychapels"
-        class="social-media"
-        target="_blank"
-      >
-        <div class="social-media">
-          <i class="fa-brands fa-square-facebook"></i>
-        </div>
-      </a>
-    </div>
-  </div>
-</footer>
-<!-- ========== End Footer ========== -->
+  </footer>
+  <!-- ========== End Footer ========== -->
 
-<!-- ========== Start JS ========== -->
-    <!-- Linking SwiperJS Script -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <!-- ========== Start JS ========== -->
+  <!-- Linking SwiperJS Script -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-        <!-- Linking custom Script -->
-    <script src="/js/script.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-          fetch("./data/mockReviews.json")
-            .then((response) => response.json())
-            .then((data) => {
-              const reviewContainer = document.getElementById("reviewContainer");
-              console.log(data);
-              data.forEach((review) => {
-                const reviewItem = document.createElement("li");
-                reviewItem.className = "card-item swiper-slide";
-                reviewItem.innerHTML = `
-                  <a href="#" class="card-link">
-                    <p class="badge"><i class="fa-solid fa-quote-left"></i></p>
-                    <h2 class="card-title">${review.quote}</h2>
-                    <div class="card-detail">
-                      <img src="${review.profileImage}" alt="Card Image" class="card-image" />
-                      <div>
-                        <h4 class="card-profile">${review.name}</h4>
-                        <p class="card-date">${review.date}</p>
-                      </div>
+  <!-- Linking custom Script -->
+  <script src="/js/script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch("/api/facebook-reviews")
+        .then((response) => response.json())
+        .then((data) => {
+          const reviewContainer = document.getElementById("reviewContainer");
+
+          data.forEach((review) => {
+            const reviewItem = document.createElement("li");
+            reviewItem.className = "card-item swiper-slide";
+
+            // Add rating stars if you want to display them
+            const ratingStars = review.rating
+              ? '<div class="rating">' + "⭐".repeat(review.rating) + "</div>"
+              : "";
+
+            reviewItem.innerHTML = `
+              <a href="https://www.facebook.com/citychapels/reviews" target=_blank class="card-link">
+                <div class="card-header">
+                  <p class="badge"><i class="fa-solid fa-quote-left"></i></p>
+                  ${ratingStars}
+                  <h2 class="card-title">${review.quote}</h2>
+                </div>
+                <div class="card-footer">
+                  <div class="card-detail">
+                    <img src="${review.profileImage}" alt="Profile" class="card-image"
+                         onerror="this.src='/img/default-profile.png'"/>
+                    <div>
+                      <h4 class="card-profile">${review.name}</h4>
+                      <p class="card-date">${review.date}</p>
                     </div>
-                  </a>
-                `;
-                reviewContainer.appendChild(reviewItem);
-              });
+                  </div>
+                </div>
+              </a>
+            `;
+            reviewContainer.appendChild(reviewItem);
+          });
 
-              // Initialize Swiper after adding the reviews
-              new Swiper(".swiper", {
-                slidesPerView: 1,
-                spaceBetween: 30,
-                loop: true,
-                pagination: {
-                  el: ".swiper-pagination",
-                  clickable: true,
-                },
-                navigation: {
-                  nextEl: ".swiper-button-next",
-                  prevEl: ".swiper-button-prev",
-                },
-              });
-            })
-            .catch((error) => console.error("Error fetching reviews:", error));
-        });
-      </script>
+          // Initialize Swiper after adding the reviews
+          new Swiper(".swiper", {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            pagination: {
+              el: ".swiper-pagination",
+              clickable: true,
+            },
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+          });
+        })
+        .catch((error) => console.error("Error fetching reviews:", error));
+    });
+  </script>
 
-      <script>
-        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-      </script>
-      <script defer src="/_vercel/insights/script.js"></script>
-<!-- ========== End JS ========== -->
-
-</body>
-</html>
-
+  <script>
+    window.va =
+      window.va ||
+      function () {
+        (window.vaq = window.vaq || []).push(arguments);
+      };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+  <!-- ========== End JS ========== -->
 </body>
 </html>

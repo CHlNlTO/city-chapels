@@ -54,7 +54,7 @@
           <li><a href="pricing.html" class="menu-btn">Pricing</a></li>
           <li><a href="gallery.html" class="menu-btn">Gallery</a></li>
           <li>
-            <a href="tel:09177212114" class="menu-btn">
+            <a href="tel:09778113377" class="menu-btn">
               <button class="btn-grad-turq">Call Us</button></a
             >
           </li>
@@ -68,6 +68,15 @@
 
     <!-- ========== Start Main ========== -->
     <main class="main index-main d-flex a-items">
+      <!-- Video Background -->
+      <video autoplay muted loop id="bg-video">
+        <source
+          src="/img/Natividad Antonio Crespo Funeral.mp4"
+          type="video/mp4"
+        />
+      </video>
+
+      <div class="gradient-overlay"></div>
       <div class="sub-section">
         <div class="section-head pb-2">
           <img src="/img/logo/logo-ct.png" alt="" />
@@ -78,7 +87,7 @@
             goes smoothly.
           </p>
         </div>
-        <a href="tel:09177212114" class="button">
+        <a href="tel:09778113377" class="button">
           <button class="btn-grad-turq">
             <i class="fa fa-phone" style="padding-right: 8px"></i>
             Call Us
@@ -201,8 +210,8 @@
         </div>
         <div class="button">
           <a href="gallery.html">
-            <button class="btn-grad-yellow .bg-white" style="color: black">
-              <i class="fa fa-eye" style="padding-right: 8px; color: black"></i>
+            <button class="btn-grad-yellow .bg-white">
+              <i class="fa fa-eye" style="padding-right: 8px"></i>
               See More
             </button>
           </a>
@@ -283,7 +292,7 @@
           <img src="/img/illus/illus-graph.png" alt="map" />
           <div style="color: white">
             <h3 style="padding-bottom: 12px">
-              Why Is City Chapels More Affordable?
+              Why City Chapels More Affordable?
             </h3>
             <p>
               City Chapel is committed to honest and upfront pricing. There are
@@ -353,7 +362,7 @@
           <p class="footer-p">Have questions? Talk to a care team member.</p>
         </div>
         <div class="footer-social d-flex">
-          <a href="tel:09177212114" class="social-media">
+          <a href="tel:09778113377" class="social-media">
             <i class="fa-solid fa-square-phone"></i>
           </a>
           <a href="mailto:citychapels@gmail.com" class="social-media">
@@ -397,15 +406,19 @@
 
               reviewItem.innerHTML = `
                 <a href="https://www.facebook.com/citychapels/reviews" target=_blank class="card-link">
-                  <p class="badge"><i class="fa-solid fa-quote-left"></i></p>
-                  ${ratingStars}
-                  <h2 class="card-title">${review.quote}</h2>
-                  <div class="card-detail">
-                    <img src="${review.profileImage}" alt="Profile" class="card-image"
-                         onerror="this.src='/img/default-profile.png'"/>
-                    <div>
-                      <h4 class="card-profile">${review.name}</h4>
-                      <p class="card-date">${review.date}</p>
+                  <div class="card-header">
+                    <p class="badge"><i class="fa-solid fa-quote-left"></i></p>
+                    ${ratingStars}
+                    <h2 class="card-title">${review.quote}</h2>
+                  </div>
+                  <div class="card-footer">
+                    <div class="card-detail">
+                      <img src="${review.profileImage}" alt="Profile" class="card-image"
+                           onerror="this.src='/img/default-profile.png'"/>
+                      <div>
+                        <h4 class="card-profile">${review.name}</h4>
+                        <p class="card-date">${review.date}</p>
+                      </div>
                     </div>
                   </div>
                 </a>

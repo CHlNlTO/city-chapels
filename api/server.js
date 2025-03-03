@@ -18,34 +18,37 @@ app.get("/", (req, res) => {
 
 app.get("/api/facebook-reviews", async (req, res) => {
   try {
-    const response = await axios.get(
-      `https://graph.facebook.com/v21.0/${PAGE_ID}/ratings`,
-      {
-        params: {
-          access_token: FACEBOOK_ACCESS_TOKEN,
-          fields: "reviewer{name,picture},rating,review_text,created_time",
-          limit: 10, // Adjust as needed
-        },
-      }
-    );
+    // const response = await axios.get(
+    //   `https://graph.facebook.com/v21.0/${PAGE_ID}/ratings`,
+    //   {
+    //     params: {
+    //       access_token: FACEBOOK_ACCESS_TOKEN,
+    //       fields: "reviewer{name,picture},rating,review_text,created_time",
+    //       limit: 10, // Adjust as needed
+    //     },
+    //   }
+    // );
 
-    console.log("Facebook reviews:", response.data.data);
+    // console.log("Facebook reviews:", response.data.data);
 
-    // Transform Facebook data to match your existing review format
-    const formattedReviews = response.data.data.map((review) => ({
-      quote: review.review_text || `Rated ${review.rating} out of 5 stars`,
-      name: review.reviewer.name,
-      profileImage:
-        review.reviewer.picture?.data?.url || "/img/default-profile.png", // Add a default profile image
-      date: new Date(review.created_time).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      }),
-      rating: review.rating,
-    }));
+    // // Transform Facebook data to match your existing review format
+    // const formattedReviews = response.data.data.map((review) => ({
+    //   quote: review.review_text || `Rated ${review.rating} out of 5 stars`,
+    //   name: review.reviewer.name,
+    //   profileImage:
+    //     review.reviewer.picture?.data?.url || "/img/default-profile.png", // Add a default profile image
+    //   date: new Date(review.created_time).toLocaleDateString("en-US", {
+    //     year: "numeric",
+    //     month: "long",
+    //     day: "numeric",
+    //   }),
+    //   rating: review.rating,
+    // }));
 
-    res.json(formattedReviews);
+    // res.json(formattedReviews);
+
+    const mockData = require("../public/data/mockReviews.json");
+    res.json(mockData);
   } catch (error) {
     console.error(
       "Error fetching Facebook reviews:",
